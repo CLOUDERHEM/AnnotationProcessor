@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.clouderhem'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation files('src/main/resources/lib/tools.jar')
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
