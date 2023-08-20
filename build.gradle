@@ -5,8 +5,10 @@ plugins {
 
 apply from: "${System.getenv("GRADLE_HOME")}/init.d/init.gradle"
 
+def javaMajorVersion = Integer.valueOf(JavaVersion.current().majorVersion)
+
 group = 'io.github.clouderhem'
-version = '1.0-SNAPSHOT'
+version = '1.1-SNAPSHOT-java' + javaMajorVersion
 
 repositories {
     mavenLocal()
@@ -15,7 +17,10 @@ repositories {
 
 dependencies {
 
-    implementation files('src/main/resources/lib/tools.jar')
+
+    if (javaMajorVersion == 8) {
+        implementation files('src/main/resources/lib/tools.jar')
+    }
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -23,4 +28,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+
+if (javaMajorVersion >= 9) {
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs += ["--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+                                 "--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+                                 "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+                                 "--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED",
+                                 "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"]
+    }
 }
