@@ -1,4 +1,4 @@
-package io.github.clouderhem.annotation;
+package io.github.clouderhem.annotationprocessor.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

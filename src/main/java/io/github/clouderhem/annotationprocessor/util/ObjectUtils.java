@@ -1,4 +1,4 @@
-package io.github.clouderhem.util;
+package io.github.clouderhem.annotationprocessor.util;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
