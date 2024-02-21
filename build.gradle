@@ -3,7 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-apply from: "${System.getenv("GRADLE_HOME")}/init.d/init.gradle"
 
 def javaMajorVersion = Integer.valueOf(JavaVersion.current().majorVersion)
 
